@@ -19,14 +19,22 @@ end
 
 # partition
 def partition(array, lo, hi)
+  mid = (lo + hi) / 2
+  if array[mid] < array[lo]
+      swap(array, lo, mid)
+  end
+  if array[hi] < array[lo]
+      swap(array, lo, hi)
+  end
+  if array[mid] < array[hi]
+      swap(array, mid, hi)
+  end
   pivot = array[hi]
+
   i = lo
   (lo..hi).each do |j|
     if array[j] < pivot
-      ai = array[i]
-      aj = array[j]
-      array[i] = aj
-      array[j] = ai
+      swap(array, i, j)
       i += 1
     end
   end
@@ -37,3 +45,9 @@ def partition(array, lo, hi)
   return i
 end
 
+def swap(array, x, y)
+  ax = array[x]
+  ay = array[y]
+  array[y] = ax
+  array[x] = ay
+end
