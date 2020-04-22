@@ -20,15 +20,9 @@ end
 # partition
 def partition(array, lo, hi)
   mid = (lo + hi) / 2
-  if array[mid] < array[lo]
-      swap(array, lo, mid)
-  end
-  if array[hi] < array[lo]
-      swap(array, lo, hi)
-  end
-  if array[mid] < array[hi]
-      swap(array, mid, hi)
-  end
+  swap(array, lo, mid) if array[mid] < array[lo]
+  swap(array, lo, hi) if array[hi] < array[lo]
+  swap(array, mid, hi) if array[mid] < array[hi]
   pivot = array[hi]
 
   i = lo
@@ -42,7 +36,7 @@ def partition(array, lo, hi)
   ahi = array[hi]
   array[i] = ahi
   array[hi] = ai
-  return i
+  i
 end
 
 def swap(array, x, y)
