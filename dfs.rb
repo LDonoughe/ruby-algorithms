@@ -17,3 +17,20 @@ def dfs(g, v, c)
     return values.reject { |el| el == nil }[0]
   end
 end
+
+def iterative_dfs(g,v,c)
+  v.visited = true
+  s = []
+  s.unshift(v)
+  while s.size > 0
+    v = s.shift
+    return v if v.content == c
+    v.edges.each do |w|
+      unless w.visited
+        w.visited = true
+        return w if w.content == c
+        s.unshift(w)
+      end
+    end
+  end
+end
